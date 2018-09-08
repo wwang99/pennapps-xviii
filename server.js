@@ -16,6 +16,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.render('index', {});
+})
+app.get('/rescuer', (req, res) => {
+    res.render('rescuer', {});
+})
+app.get('/rescueme', (req, res) => {
+    res.render('victim', {});
+})
 //MongoDB admin user pw: dtDs3VgQayKd7JKZ
 var uri = "mongodb+srv://admin:dtDs3VgQayKd7JKZ@pennapps-piuu1.gcp.mongodb.net/saveme?retryWrites=true";
 MongoClient.connect(uri, function(err, client) {

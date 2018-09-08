@@ -9,3 +9,4 @@ $("document").ready(function() {
         $(".victims").css("display", "block");
     })
 });
+const socket = io();

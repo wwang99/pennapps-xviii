@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+}
+.card {
+    border: .05em solid #dddddd;
+    margin: .2em;
+    border-radius: 1em;
+    background-color: white;
+}
+.victims {
+    height: 30%;
+    overflow: auto;
+    background:#eaeaea
+}
+.card-header-text {
+    font-family: 'Libre Baskerville', serif;
+    color: #454444;
+}
+.info-wrapper {
+    margin-left: 1em;
+}

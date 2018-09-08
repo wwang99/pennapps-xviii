@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const _ = require("underscore");
 const bodyParser = require('body-parser');
+const path = require('path')
 
 const MongoClient = require("mongodb").MongoClient;
 

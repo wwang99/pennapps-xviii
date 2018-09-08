@@ -7,3 +7,12 @@
     font-family: 'Roboto', sans-serif;
     color: #8c8c8c;
 }
+.btn {
+    color: gray;
+    background-color: whitesmoke;
+    width: 15em;
+    height: 2em;
+    border: .01em solid lightgray;
+    box-shadow: 0em 0em 1em #969696;
+    border-radius: .5em;
+}

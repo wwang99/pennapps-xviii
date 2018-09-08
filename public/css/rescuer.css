@@ -19,3 +19,38 @@ body {
 .info-wrapper {
     margin-left: 1em;
 }
+
+.info-block {
+    display: inline-block;
+    width: 10em;
+}
+
+.details {
+    margin-bottom: 1em;
+}
+
+.expanded {
+    display: none;
+}
+
+.expanded-card-header {
+    text-align: center;
+}
+
+.button-wrapper {
+    text-align: center;
+}
+
+.info-container {
+    margin-bottom: 1em;
+}
+
+.btn-dismiss {
+    margin-top: 1em;
+    border: .01em solid gray;
+    border-radius: .5em;
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    right: 1em;
+}

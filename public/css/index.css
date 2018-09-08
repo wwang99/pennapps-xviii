@@ -12,6 +12,7 @@ body {
 }
 
 .victims {
+    visibility: visible;
     height: 30%;
     overflow: auto;
 }

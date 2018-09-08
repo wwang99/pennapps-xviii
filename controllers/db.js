@@ -21,6 +21,12 @@ const fetchVictims = (db, coordinates, callback) => {
     });
 }
 
+const addVictim = (db, victimInfo) => (req, res) => {
+    db.collection("victims").insertOne(victimInfo, function(err, result) {
+        callback(result);
+    });
+}
+
 module.exports = {
     fetchVictims: fetchVictims
 }

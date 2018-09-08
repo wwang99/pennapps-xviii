@@ -1,12 +1,30 @@
-// Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
+const socket = io();
+// const socket = io.connect();
 
-var pusher = new Pusher('ddf30894c0c1c2d4353d', {
-    cluster: 'us2',
-    forceTLS: true
-});
+const sosSignal = () => {
+    socket.emit('sos', victimInfo);
+}
 
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function(data) {
-    alert(JSON.stringify(data));
-});
+socket.emit('joinChannel', { channelId: 'test' });
+
+let victimInfo = {};
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(location) {
+        lat = location.coords.latitude;
+        lng = location.coords.longitude;
+        victimInfo = {
+            name: "Test User",
+            phone: "1112223333",
+            emergencyLevel: 4,
+            info: "my arm is broken please help me",
+            numPeople: 1,
+            location: {
+                latitude: lat,
+                longitude: lng
+            }
+        }
+    });
+} else {
+    alert('geolocation not supported');
+}

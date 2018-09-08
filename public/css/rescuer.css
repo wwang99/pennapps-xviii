@@ -1,5 +1,11 @@
-body {
+html, body {
+    height: 100%;
+    padding: 0px;
     margin: 0px;
+}
+
+body {
+    background: #eaeaea;
 }
 .card {
     border: .05em solid #dddddd;
@@ -53,4 +59,8 @@ body {
     height: 2em;
     width: 2em;
     right: 1em;
+}
+
+#map {
+    height: 70%;
 }

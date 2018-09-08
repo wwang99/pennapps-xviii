@@ -1,0 +1,30 @@
+{
+  "name": "pennapps-xviii",
+  "version": "1.0.0",
+  "description": "PennApps XVIII Hack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wwang99/pennapps-xviii.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wwang99/pennapps-xviii/issues"
+  },
+  "homepage": "https://github.com/wwang99/pennapps-xviii#readme",
+  "dependencies": {
+    "@google/maps": "^0.5.5",
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.4",
+    "pusher": "^2.1.3",
+    "socket.io": "^2.1.1",
+    "underscore": "^1.9.1"
+  }
+}

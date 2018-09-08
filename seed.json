@@ -1,0 +1,45 @@
+{
+    "id": 1,
+    "name": "John Smith",
+    "phone": "8882223333",
+    "emergencyLevel": 3,
+    "info": "help i've fallen and i can't get up",
+    "numPeople": 1,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -75.19055139999999,
+            39.9519688
+        ]
+    }
+}
+{
+    "id": 2,
+    "name": "Penn Apps",
+    "phone": "7771112222",
+    "emergencyLevel": 1,
+    "info": "i am drowning",
+    "numPeople": 2,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -75.18,
+            39.959
+        ]
+    }
+}
+{
+    "id": 3,
+    "name": "Smith John",
+    "phone": "9991234444",
+    "emergencyLevel": 5,
+    "info": "i am lost",
+    "numPeople": 5,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            -75.19,
+            39.957
+        ]
+    }
+}

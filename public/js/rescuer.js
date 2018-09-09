@@ -43,7 +43,7 @@ socket.on('newVictim', data => {
         <p class="body-text">Number of People: ${data.numPeople}</p>
         </div>
         <div class="button-wrapper">
-        <button class="btn">Rescue</button>
+        <button class="btn" onclick="rescueVictim('${data.id}')">Rescue</button>
         </div>
         </div>
         </div>`

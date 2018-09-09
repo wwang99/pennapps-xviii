@@ -100,6 +100,7 @@ MongoClient.connect(uri, function(err, client) {
         socket.on('rescueComing', data => {
             console.log(data);
             io.to(data.toString()).emit('helpOnTheWay');
+            routes.deleteVictim(client.db('saveme'), data);
         })
         // socket.on('sos', data => {
         //     console.log(data);

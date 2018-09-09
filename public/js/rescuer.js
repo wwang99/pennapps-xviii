@@ -6,6 +6,8 @@ function openCard(victimID) {
 function rescueVictim(victimID) {
     console.log('rescuing', victimID);
     socket.emit('rescueComing', victimID);
+    $(`#c${victimID}`).remove();
+    alert("Rescuee has been notified of your assistance");
 }
 
 function dismiss() {

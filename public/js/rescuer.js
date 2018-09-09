@@ -115,3 +115,37 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                           'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
 }
+
+function startRescue() {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    function success(pos) {
+        var mycrd = pos.coords;
+        ren = new google.maps.DirectionsRenderer({
+            'draggable': true
+        });
+        ren.setMap(map);
+        ren.setPanel(document.getElementById("directionsPanel"));
+        ser = new google.maps.DirectionsService();
+
+        ser.route({
+            'origin': mycrd,
+            'destination': wayB.getPosition(),
+            'travelMode': google.maps.DirectionsTravelMode.DRIVING
+        }, function(res, sts) {
+            if (sts == 'OK') ren.setDirections(res);
+        });
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+}
+
+

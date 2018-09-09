@@ -35,6 +35,7 @@ MongoClient.connect(uri, function(err, client) {
         res.render('victim', {});
     })
     app.post('/rescueme', async (req, res) => {
+        console.log(req.body);
         let data = {};
         data.name = req.body.name;
         data.phone = req.body.phoneNumber;
@@ -66,8 +67,8 @@ MongoClient.connect(uri, function(err, client) {
         //     }
         // }
         let coords = [];
-        coords.push(Number(req.body.locationAuto.split(',')[0]));
-        coords.push(Number(req.body.locationAuto.split(',')[1]));
+        coords[1] = Number(req.body.locationAuto.split(',')[0]);
+        coords[0] = Number(req.body.locationAuto.split(',')[1]);
         data.location = {
             type: "Point",
             coordinates: coords
@@ -79,7 +80,7 @@ MongoClient.connect(uri, function(err, client) {
         }
         io.to('rescuers').emit('newVictim', data);
         routes.recordVictim(client.db('saveme'), data);
-        res.redirect('/rescueme?id'+req.body.phoneNumber);
+        res.redirect('/rescueme?id='+req.body.phoneNumber);
     })
 
     // api routes

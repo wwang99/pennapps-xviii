@@ -16,14 +16,35 @@ const socket = io();
 
 socket.emit('joinRescueChannel');
 
+var rad = function(x) {
+    return x * Math.PI / 180;
+};
+
+// lng, lat
+let coords = [39.9519688, -75.19055139999999]
+
+var getDistance = function(p1, p2) {
+    var R = 6378137; // Earth’s mean radius in meter
+    var dLat = rad(p2[1] - p1[1]);
+    var dLong = rad(p2[0] - p1[0]);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(p1[1])) * Math.cos(rad(p2[1])) *
+    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d; // returns the distance in meter
+};
+
 socket.on('newVictim', data => {
-    console.log(data);
+    // console.log(coords);
+    console.log(data.location.coordinates);
+    let distance = getDistance(coords, data.location.coordinates)
     $(".victims").append(
         `<div class="card" id="c${data.id}" onclick="openCard(${data.id})">
         <div class="info-wrapper">
         <h4 class="card-header-text">${data.name}</h4>
         <div class="details body-text">
-        <div class="info-block">Distance: ${data.location.coordinates[0]} ${data.location.coordinates[1]}</div> <div class="info-block">Severity: ${data.emergencyLevel}</div>
+        <div class="info-block">Distance: ${distance.toFixed(2)}</div> <div class="info-block">Severity: ${data.emergencyLevel}</div>
         </div>
         </div>
         </div>`
@@ -37,7 +58,7 @@ socket.on('newVictim', data => {
         </div>
         <div class="info-wrapper">
         <p class="body-text">Phone #: ${data.phone}</p>
-        <p class="body-text">Distance: ${data.location.coordinates[0]} ${data.location.coordinates[1]}</p>
+        <p class="body-text">Distance: ${distance.toFixed(2)}</p>
         <p class="body-text">Severity: ${data.emergencyLevel}</p>
         <p class="body-text">Description: ${data.info}</p>
         <p class="body-text">Number of People: ${data.numPeople}</p>
@@ -98,12 +119,12 @@ function initMap() {
     $.getJSON('/getVictims', function(data) {
         console.warn(data);
         for (victim of data) {
-            console.warn(victim.location.coordinates[1]);
             console.warn(victim.location.coordinates[0]);
+            console.warn(victim.location.coordinates[1]);
             marker = new google.maps.Marker({
                 position: {
-                    lat: victim.location.coordinates[1],
-                    lng: victim.location.coordinates[0]
+                    lat: victim.location.coordinates[0],
+                    lng: victim.location.coordinates[1]
                 },
                 map: map,
                 animation: google.maps.Animation.DROP,
@@ -121,36 +142,34 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-function startRescue() {
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-
-    function success(pos) {
-        var mycrd = pos.coords;
-        ren = new google.maps.DirectionsRenderer({
-            'draggable': true
-        });
-        ren.setMap(map);
-        ren.setPanel(document.getElementById("directionsPanel"));
-        ser = new google.maps.DirectionsService();
-
-        ser.route({
-            'origin': mycrd,
-            'destination': wayB.getPosition(),
-            'travelMode': google.maps.DirectionsTravelMode.DRIVING
-        }, function(res, sts) {
-            if (sts == 'OK') ren.setDirections(res);
-        });
-    }
-
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-}
-
-
+// function startRescue() {
+//     var options = {
+//         enableHighAccuracy: true,
+//         timeout: 5000,
+//         maximumAge: 0
+//     };
+//
+//     function success(pos) {
+//         var mycrd = pos.coords;
+//         ren = new google.maps.DirectionsRenderer({
+//             'draggable': true
+//         });
+//         ren.setMap(map);
+//         ren.setPanel(document.getElementById("directionsPanel"));
+//         ser = new google.maps.DirectionsService();
+//
+//         ser.route({
+//             'origin': mycrd,
+//             'destination': wayB.getPosition(),
+//             'travelMode': google.maps.DirectionsTravelMode.DRIVING
+//         }, function(res, sts) {
+//             if (sts == 'OK') ren.setDirections(res);
+//         });
+//     }
+//
+//     function error(err) {
+//         console.warn(`ERROR(${err.code}): ${err.message}`);
+//     }
+//
+//     navigator.geolocation.getCurrentPosition(success, error, options);
+// }

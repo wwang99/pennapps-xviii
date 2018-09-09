@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Save My Ass</title>
-        <meta name="viewport" content="width=device-width">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-        <script src="js/victim.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/siwalikm/quick-form-css@2.2.2/qfc-dark.css">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-    </head>
-    <body>
-        <div class="qfc-container">
-            <h2>Rescue</h2>
-            <label>Connecting everyday superheroes to those in need during times of crisiss.</label>
+<head>
+    <meta charset="UTF-8">
+    <title>Save My Ass</title>
+    <meta name="viewport" content="width=device-width">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="js/victim.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/siwalikm/quick-form-css@2.2.2/qfc-dark.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <div class="qfc-container">
+        <h2>Rescue Information</h2>
+        <label>Connecting everyday superheroes to those in need during times of crisis.</label>
         <form method="post" action="/rescueme">
             <div>
-              <div>
-                  <input placeholder="Full Name" name = "fullname" type="text" required>
-              </div>
-              <div>
-                  <input placeholder="Phone Number" name = "phoneNumber" type="tel" required>
-              </div>
-                  <input placeholder="Number of people in need of rescue" class = "people" type="number" required>
-              <div>
-                <label>Do you need to be immediately hospitalized?</label>
                 <div>
-                  <label>
-                                  <input type="radio" name='hospital'  >Yes
-                              </label>
+                    <input placeholder="Name" name="name" type="text" required>
                 </div>
                 <div>
-                  <label>
-                                  <input type="radio" name="hospital" checked="checked" >No
-                              </label>
+                    <input placeholder="Phone Number" name="phoneNumber" type="tel" pattern="[0-9]{10}" required>
                 </div>
-             
-              <div>
-                
-              </div>
-            
-                <input placeholder="Current Location" name = "location" type="text" required>
-              </div>
-              
-              <div>
-                
+                <input placeholder="Number of people in need of rescue" name="people" type="number" required>
                 <div>
-                  <textarea placeholder="Please describe your situation in more detail" name= "info"></textarea>
-                </div>
-              </div>
-              <div>
-                
-                <div>
-                  
-                </div>
-              </div>
-              <div>
-                <button type="submit" class = "mainbutton" >Submit</button>
-              </div>
-            </div>
-          </form>
-        <button type="button" onclick="sosSignal()">Help</button>
+                    <label>Do you need to be immediately hospitalized?</label>
+                    <div>
+                        <label>
+                            <input type="radio" name='hospital'>Yes
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" name="hospital" checked="checked" >No
+                        </label>
+                    </div>
 
-      <style>
+                    <div>
+
+                    </div>
+
+                    <input placeholder="Current Location (optional)" name="location" type="text">
+                    <input type="hidden" id="locationAuto" name="locationAuto" value="">
+                </div>
+
+                <div>
+
+                    <div>
+                        <textarea placeholder="Please describe your situation in more detail" name="info"></textarea>
+                    </div>
+                </div>
+                <div>
+
+                    <div>
+
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="mainbutton" >Submit</button>
+                </div>
+            </div>
+        </form>
+        <style>
         a {
-          color :#00bcd4;
-          text-decoration: none;
+            color :#00bcd4;
+            text-decoration: none;
         }
-      </style>
-    </body>
+        </style>
+    </div>
+</body>
 </html>

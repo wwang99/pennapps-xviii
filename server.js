@@ -3,6 +3,7 @@ const express = require("express");
 const _ = require("underscore");
 const bodyParser = require('body-parser');
 const path = require('path')
+const fetch = require('node-fetch');
 
 const MongoClient = require("mongodb").MongoClient;
 const routes = require('./controllers/routes.js');
@@ -33,30 +34,75 @@ MongoClient.connect(uri, function(err, client) {
     app.get('/rescueme', (req, res) => {
         res.render('victim', {});
     })
-    // app.post('/rescueme', (req, res) => {
-    //     req.body
-    //     // emit
-    // })
+    app.post('/rescueme', async (req, res) => {
+        console.log(req.body);
+        let data = {};
+        data.name = req.body.name;
+        data.phone = req.body.phoneNumber;
+        data.id = Number(req.body.phoneNumber);
+        data.info = req.body.info;
+        data.numPeople = req.body.people;
+        // if (req.body.location) {
+        //     let coords = [];
+        //     fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD54tRMyjOB8mJCrMWI2-UYkfC6_MaY1PQ')
+        //     .then(function(response) {
+        //         return response.json();
+        //     })
+        //     .then(function(myJson) {
+        //         console.log(JSON.stringify(myJson.results[0].geometry.location));
+        //         coords[0] = myJson.results[0].geometry.location.lng;
+        //         coords[1] = myJson.results[0].geometry.location.lat;
+        //         data.location = {
+        //             type: "Point",
+        //             coordinates: coords
+        //         }
+        //     });
+        //     console.log(data.location);
+        // } else {
+        //     let coords = req.body.locationAuto.split(',');
+        //     console.log(coords);
+        //     data.location = {
+        //         type: "Point",
+        //         coordinates: coords
+        //     }
+        // }
+        let coords = [];
+        coords.push(Number(req.body.locationAuto.split(',')[0]));
+        coords.push(Number(req.body.locationAuto.split(',')[1]));
+        data.location = {
+            type: "Point",
+            coordinates: coords
+        }
+        if (data.hospital === 'on') {
+            data.emergencyLevel = 5;
+        } else {
+            data.emergencyLevel = Math.floor(Math.random() * 5) + 1;
+        }
+        console.log(data);
+        io.to('rescuers').emit('newVictim', data);
+        routes.recordVictim(client.db('saveme'), data);
+        res.redirect('/rescueme?id'+req.body.phoneNumber);
+    })
 
     // api routes
     app.get('/getVictims', routes.APIVictims(client.db('saveme')));
-    
+
     io.on('connection', socket => {
         socket.on('joinChannel', data => {
             socket.join(data.channelId);
-            console.log("victim joined " + data.channelId + " channel");
+            console.log("new victim joined " + data.channelId + " channel");
         });
 
         socket.on('joinRescueChannel', () => {
             socket.join('rescuers');
-            console.log('rescuer joined rescuers channel');
+            console.log('new rescuer joined rescuers channel');
         })
 
-        socket.on('sos', data => {
-            console.log(data);
-            io.to('rescuers').emit('newVictim', data);
-            routes.recordVictim(client.db('saveme'), data);
-        })
+        // socket.on('sos', data => {
+        //     console.log(data);
+        //     io.to('rescuers').emit('newVictim', data);
+        //     routes.recordVictim(client.db('saveme'), data);
+        // })
     });
 
     // route for handling 404 requests (unavailable routes)

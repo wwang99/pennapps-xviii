@@ -9,7 +9,7 @@ socket.on('helpOnTheWay', () => {
 });
 
 if (window.location.search) {
-    let id = window.location.search.substr(1).slice(2);
+    let id = window.location.search.substr(1).slice(3);
     socket.emit('joinChannel', { channelId: id });
     console.log('joined channel', id);
     $("body").replaceWith("SOS request received")
@@ -21,7 +21,7 @@ if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(location) {
         let lat = location.coords.latitude;
         let lng = location.coords.longitude;
-        document.getElementById("locationAuto").value = `${lat}, ${lng}`;
+        document.getElementById("locationAuto").value = `${lng}, ${lat}`;
         // victimInfo = {
         //     id:  id,
         //     name: "Test User",

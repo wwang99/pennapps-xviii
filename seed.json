@@ -1,5 +1,5 @@
 {
-    "id": 1,
+    "id": 8882223333,
     "name": "John Smith",
     "phone": "8882223333",
     "emergencyLevel": 3,
@@ -8,13 +8,13 @@
     "location": {
         "type": "Point",
         "coordinates": [
-            -75.19055139999999,
-            39.9519688
+            39.955,
+            -75.20
         ]
     }
 }
 {
-    "id": 2,
+    "id": 7771112222,
     "name": "Penn Apps",
     "phone": "7771112222",
     "emergencyLevel": 1,
@@ -23,13 +23,13 @@
     "location": {
         "type": "Point",
         "coordinates": [
-            -75.18,
-            39.959
+            39.959,
+            -75.18
         ]
     }
 }
 {
-    "id": 3,
+    "id": 9991234444,
     "name": "Smith John",
     "phone": "9991234444",
     "emergencyLevel": 5,
@@ -38,8 +38,53 @@
     "location": {
         "type": "Point",
         "coordinates": [
-            -75.19,
-            39.957
+            39.957,
+            -75.19
+        ]
+    }
+}
+{
+    "id": 1111111111,
+    "name": "Sasuke Uchiha",
+    "phone": "1111111111",
+    "emergencyLevel": 2,
+    "info": "my brother killed my family",
+    "numPeople": 5,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            40.045,
+            -75.197
+        ]
+    }
+}
+{
+    "id": 2222222222,
+    "name": "Naruto Uzimaki",
+    "phone": "2222222222",
+    "emergencyLevel": 5,
+    "info": "i am fighting the nine tails",
+    "numPeople": 5,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            39.950,
+            -74.345
+        ]
+    }
+}
+{
+    "id": 3333333333,
+    "name": "Andy Dwight",
+    "phone": "3333333333",
+    "emergencyLevel": 5,
+    "info": "i am the danger",
+    "numPeople": 5,
+    "location": {
+        "type": "Point",
+        "coordinates": [
+            40.00,
+            -75.23
         ]
     }
 }

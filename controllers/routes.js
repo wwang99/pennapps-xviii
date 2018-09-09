@@ -18,6 +18,7 @@ const APIVictims = db => (req, res) => {
         res.json(results);
     })
 }
+
 const recordVictim = (db, victimInfo) => {
     db.collection("victims").insertOne(victimInfo, function(err, result) {
         if (err) {
@@ -26,8 +27,18 @@ const recordVictim = (db, victimInfo) => {
     });
 }
 
+const deleteVictim = (db, victimID) => {
+    console.log('deleting', victimID)
+    db.collection("victims").deleteOne({ id: Number(victimID) }, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+    })
+}
+
 module.exports = {
     getAllVictims: getAllVictims,
     recordVictim: recordVictim,
-    APIVictims: APIVictims
+    APIVictims: APIVictims,
+    deleteVictim: deleteVictim
 }

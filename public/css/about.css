@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+}
+.landing-text {
+    font-family: 'Arvo', serif;
+    font-size: 60pt;
+}
+
+.landing-text-wrapper {
+    text-align: center;
+    margin-top: 3em;
+}
+
+.custom {
+    font-size: 15pt;
+}
+
+.graphic {
+    width: 15em;
+    height: 15em;
+}
+
+.header-background {
+    background-image: linear-gradient(to top right, #f3f7f2, #95b9bb);
+    padding-bottom: 8em;
+}
+
+.body-background {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color:#423851;
+}
+
+.lite {
+    color: ghostwhite;
+}
+
+.liter {
+    line-height: 1.5em;
+    color: whitesmoke;
+}
+
+.text-container {
+    margin-top: 3em;
+    margin-left: 2em;
+}
+
+.text-head-container {
+    margin-left: 1em;
+    margin-right: 3em;
+    margin-bottom: 7em;
+}
+
+.ss {
+    height: 30em;
+    margin: 1em;
+}
+
+.demo-container {
+    text-align: center;
+}
+
+.lg {
+    font-size: 27pt;
+}
+
+
+
+.sp {
+    margin-left: 3em;
+    margin-right: 5em;
+}
+
+.small-wrapper {
+    margin-left: 1em;
+    margin-right: 20em;
+}
+
+.demo-wrapper {
+    margin-bottom: 2em;
+}

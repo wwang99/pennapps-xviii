@@ -34,6 +34,9 @@ MongoClient.connect(uri, function(err, client) {
     app.get('/rescueme', (req, res) => {
         res.render('victim', {});
     })
+    app.get('/about', (req, res) => {
+        res.render('about', {});
+    })
     app.post('/rescueme', async (req, res) => {
         console.log(req.body);
         let data = {};

@@ -16,3 +16,21 @@
     box-shadow: 0em 0em 1em #969696;
     border-radius: .5em;
 }
+
+.title {
+    font-family: 'Bree Serif', serif;
+    font-size: 20pt;
+    margin: 0;
+    margin-left: .2em;
+    color: aliceblue;
+}
+
+.title-bar {
+    padding-top: .5em;
+    background-color: #383838;
+}
+
+.header-container {
+    margin-left: 1em;
+    margin-right: 1em;
+}

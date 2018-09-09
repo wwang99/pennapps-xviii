@@ -21,7 +21,7 @@
                         <div class="info-wrapper">
                             <h4 class="card-header-text"><%= victim.name %></h4>
                             <div class="details body-text">
-                                <div class="info-block">Distance: <%= victim.location.coordinates[0]%> <%= victim.location.coordinates[1]%></div> <div class="info-block">Severity: <%= victim.emergencyLevel %></div>
+                                <div class="info-block">Distance: <%= Math.floor(Math.abs(victim.location.coordinates[0]-victim.location.coordinates[1])) %></div> <div class="info-block">Severity: <%= victim.emergencyLevel %></div>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="info-wrapper">
                             <p class="body-text">Phone #: <%= victim.phone %></p>
-                            <p class="body-text">Distance: <%= victim.location.coordinates[0]%> <%= victim.location.coordinates[1]%></p>
+                            <p class="body-text">Distance: <%= Math.floor(Math.abs(victim.location.coordinates[0]-victim.location.coordinates[1])) %></p>
                             <p class="body-text">Severity: <%= victim.emergencyLevel %></p>
                             <p class="body-text">Description: <%= victim.info %></p>
                             <p class="body-text">Number of People: <%= victim.numPeople %></p>

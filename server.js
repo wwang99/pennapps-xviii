@@ -29,11 +29,18 @@ MongoClient.connect(uri, function(err, client) {
     app.get('/', (req, res) => {
         res.render('index', {});
     })
-    app.get('/rescuer', routes.getVictims(client.db('saveme')));
+    app.get('/rescuer', routes.getAllVictims(client.db('saveme')));
     app.get('/rescueme', (req, res) => {
         res.render('victim', {});
     })
+    // app.post('/rescueme', (req, res) => {
+    //     req.body
+    //     // emit
+    // })
 
+    // api routes
+    app.get('/getVictims', routes.APIVictims(client.db('saveme')));
+    
     io.on('connection', socket => {
         socket.on('joinChannel', data => {
             socket.join(data.channelId);

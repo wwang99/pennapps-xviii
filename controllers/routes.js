@@ -1,6 +1,6 @@
 const dbOps = require('../controllers/db');
 
-const getVictims = db => (req, res) => {
+const getAllVictims = db => (req, res) => {
     // const latitude = Number(req.query.lat);
     // const longitude = Number(req.query.lng);
     // dbOps.fetchVictims(db, [longitude, latitude], results => {
@@ -13,6 +13,11 @@ const getVictims = db => (req, res) => {
     })
 }
 
+const APIVictims = db => (req, res) => {
+    dbOps.fetchVictims(db, results => {
+        res.json(results);
+    })
+}
 const recordVictim = (db, victimInfo) => {
     db.collection("victims").insertOne(victimInfo, function(err, result) {
         if (err) {
@@ -22,6 +27,7 @@ const recordVictim = (db, victimInfo) => {
 }
 
 module.exports = {
-    getVictims: getVictims,
-    recordVictim: recordVictim
+    getAllVictims: getAllVictims,
+    recordVictim: recordVictim,
+    APIVictims: APIVictims
 }

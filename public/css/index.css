@@ -1,11 +1,7 @@
-
-
-
 body {
-    margin: 0px;
+    margin: 0;
+    background: #f4f4f4;
 }
-
-
 
 .card {
     height: 1.6em;
@@ -23,17 +19,47 @@ body {
     text-align: center;
 }
 
-.background {
-    background-color:#ffffff
-}
-
 .btn-lg {
-    height: 20em;
-    width: 20em;
+    height: 8em;
+    width: 18em;
     border-radius: 1.5em;
-    background-color: aliceblue;
+    border: .05em solid #e0e0e0;
+    background-color: ghostwhite;
+    box-shadow: 0em 0em 3em #dddddd;
 }
 
-.mainbutton{
-    background-color: aliceblue;
+
+.title {
+    font-family: 'Bree Serif', serif;
+    font-size: 20pt;
+    margin: 0;
+    margin-left: .2em;
+    color: aliceblue;
+}
+
+.title-bar {
+    padding-top: .5em;
+    background-color: #383838;
+}
+
+.header-container {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.button-container {
+    margin-top: 3em;
+    text-align: left;
+}
+
+.button-wrapper {
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.button-label {
+    margin-left: 1em;
+    font-size: 11pt;
+    font-family: 'Roboto', sans-serif;
+    color: #8c8c8c; 
 }

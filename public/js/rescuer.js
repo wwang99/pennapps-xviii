@@ -37,7 +37,8 @@ socket.on('newVictim', data => {
         </div>
         <div class="info-wrapper">
         <p class="body-text">Phone #: ${data.phone}</p>
-        <p class="body-text">Distance: ${data.location.coordinates[0]} ${data.location.coordinates[1]}</p>
+        <p class="body-text">Distance: ${data.location.coordinates[0]}</p>
+        <p class="body-text">Location: ${data.location.coordinates[0]} ${data.location.coordinates[1]}</p>
         <p class="body-text">Severity: ${data.emergencyLevel}</p>
         <p class="body-text">Description: ${data.info}</p>
         <p class="body-text">Number of People: ${data.numPeople}</p>
@@ -48,6 +49,15 @@ socket.on('newVictim', data => {
         </div>
         </div>`
     )
+    marker = new google.maps.Marker({
+        position: {
+                lat: data.location.coordinates[0],
+                lng: data.location.coordinates[1]
+            },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: 'VICTIM_ID'
+        });
 })
 
 // Note: This example requires that you consent to location sharing when
@@ -107,7 +117,7 @@ function initMap() {
                 },
                 map: map,
                 animation: google.maps.Animation.DROP,
-                title: 'VICTIM_ID'
+                title: victim.name
             });
         }
     });

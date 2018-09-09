@@ -1,4 +1,7 @@
-const fetchVictims = (db, coordinates, callback) => {
+// const fetchVictims = (db, coordinates, callback) => {
+const fetchVictims = (db, callback) => {
+    let coords = [39.9519688, -75.19055139999999] // levine hall
+    let victimsList = [];
     db.collection('victims').createIndex({
         "location": "2dsphere"
     }, () => {
@@ -7,7 +10,7 @@ const fetchVictims = (db, coordinates, callback) => {
                 $near: {
                     $geometry: {
                         type: "Point",
-                        coordinates: coordinates
+                        coordinates: coords
                     },
                 }
             }
@@ -21,12 +24,6 @@ const fetchVictims = (db, coordinates, callback) => {
     });
 }
 
-const addVictim = (db, victimInfo) => (req, res) => {
-    db.collection("victims").insertOne(victimInfo, function(err, result) {
-        callback(result);
-    });
-}
-
 module.exports = {
-    fetchVictims: fetchVictims
+    fetchVictims: fetchVictims,
 }

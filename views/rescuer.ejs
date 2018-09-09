@@ -10,67 +10,59 @@
         <link rel="stylesheet" href="css/resources.css">
         <link rel="stylesheet" href="css/rescuer.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-        <script src="js/rescuer.js"></script>
     </head>
     <body>
-        <div class="map">
-            <iframe width="100%" height="70%" frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJwcw7f1rGxokRlP7WsqKm6gk&key=AIzaSyD54tRMyjOB8mJCrMWI2-UYkfC6_MaY1PQ" allowfullscreen></iframe>
+        <div id="map">
         </div>
         <div class="victims">
-            <div class="card" id="c1">
-                <div class="info-wrapper">
-                    <h4 class="card-header-text">Victim ID</h4>
-                    <div class="details body-text">
-                        <div class="info-block">Distance: 3mi</div> <div class="info-block">Severity: Low</div>
+            <%
+                victimList.forEach(victim => { %>
+                    <div class="card" id="c<%=victim.id%>" onclick="openCard(<%=victim.id%>)">
+                        <div class="info-wrapper">
+                            <h4 class="card-header-text"><%= victim.name %></h4>
+                            <div class="details body-text">
+                                <div class="info-block">Distance: <%= victim.location.coordinates[0]%> <%= victim.location.coordinates[1]%></div> <div class="info-block">Severity: <%= victim.emergencyLevel %></div>
+                            </div>
+                        </div>
                     </div>
-                </div> 
-            </div>
-            <div class="card" id="c2">
-                <div class="info-wrapper">
-                    <h4 class="card-header-text">Victim ID</h4>
-                    <div class="details body-text">
-                        <div class="info-block">Distance: 100mi</div> <div class="info-block">Severity: High</div>
+            <%
+                })
+            %>
+        </div>
+        <%
+            victimList.forEach(victim => { %>
+                <div class="card expanded" id="e<%=victim.id%>">
+                    <button class="btn-dismiss" onclick="dismiss()"><i class="fas fa-times"></i></button>
+                    <div class="info-container">
+                        <div class="expanded-card-header">
+                            <h4 class="card-header-text"><%= victim.name %></h4>
+                        </div>
+                        <div class="info-wrapper">
+                            <p class="body-text">Phone #: <%= victim.phone %></p>
+                            <p class="body-text">Distance: <%= victim.location.coordinates[0]%> <%= victim.location.coordinates[1]%></p>
+                            <p class="body-text">Severity: <%= victim.emergencyLevel %></p>
+                            <p class="body-text">Description: <%= victim.info %></p>
+                            <p class="body-text">Number of People: <%= victim.numPeople %></p>
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="btn">Rescue</button>
+                        </div>
                     </div>
-                </div> 
-            </div>
-        </div>
-        <div class="card expanded" id="e1">
-            <button class="btn-dismiss"><i class="fas fa-times"></i></button>
-            <div class="info-container">
-                <div class="expanded-card-header">
-                    <h4 class="card-header-text">Victim ID</h4>
                 </div>
-                <div class="info-wrapper">
-                    <p class="body-text">Distance: 3mi</p>
-                    <p class="body-text">Severity: Low</p>
-                    <p class="body-text">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="button-wrapper">
-                    <button class="btn">Rescue</button>
-                </div>
-            </div>
-        </div>
-        <div class="card expanded" id="e2">
-            <button class="btn-dismiss"><i class="fas fa-times"></i></button>
-            <div class="info-container">
-                <div class="expanded-card-header">
-                    <h4 class="card-header-text">Victim ID</h4>
-                </div>
-                <div class="info-wrapper">
-                    <p class="body-text">Distance: 100mi</p>
-                    <p class="body-text">Severity: High</p>
-                    <p class="body-text">Description: This dood dead.</p>
-                </div>
-                <div class="button-wrapper">
-                    <button class="btn">Rescue</button>
-                </div>
-            </div>
-        </div>
+        <%
+            })
+        %>
         <script
-                src="https://code.jquery.com/jquery-3.3.1.min.js"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous"></script>
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous">
+        </script>
+
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD54tRMyjOB8mJCrMWI2-UYkfC6_MaY1PQ&callback=initMap">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
         <script src="js/rescuer.js"></script>
     </body>
 </html>

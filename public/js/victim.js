@@ -3,9 +3,17 @@ const socket = io();
 // const sosSignal = () => {
 //     socket.emit('sos', victimInfo);
 // }
+socket.on('helpOnTheWay', () => {
+    console.log('recived help');
+    $("body").replaceWith("you are being rescued!");
+});
 
-let id = Math.floor(Math.random() * 9999999999);
-socket.emit('joinChannel', { channelId: id });
+if (window.location.search) {
+    let id = window.location.search.substr(1).slice(2);
+    socket.emit('joinChannel', { channelId: id });
+    console.log('joined channel', id);
+    $("body").replaceWith("SOS request received")
+}
 
 let victimInfo = {};
 

@@ -35,7 +35,6 @@ MongoClient.connect(uri, function(err, client) {
         res.render('victim', {});
     })
     app.post('/rescueme', async (req, res) => {
-        console.log(req.body);
         let data = {};
         data.name = req.body.name;
         data.phone = req.body.phoneNumber;
@@ -78,7 +77,6 @@ MongoClient.connect(uri, function(err, client) {
         } else {
             data.emergencyLevel = Math.floor(Math.random() * 5) + 1;
         }
-        console.log(data);
         io.to('rescuers').emit('newVictim', data);
         routes.recordVictim(client.db('saveme'), data);
         res.redirect('/rescueme?id'+req.body.phoneNumber);
@@ -98,6 +96,10 @@ MongoClient.connect(uri, function(err, client) {
             console.log('new rescuer joined rescuers channel');
         })
 
+        socket.on('rescueComing', data => {
+            console.log(data);
+            io.to(data.toString()).emit('helpOnTheWay');
+        })
         // socket.on('sos', data => {
         //     console.log(data);
         //     io.to('rescuers').emit('newVictim', data);

@@ -1,11 +1,11 @@
 const socket = io();
-// const socket = io.connect();
 
 const sosSignal = () => {
     socket.emit('sos', victimInfo);
 }
 
-socket.emit('joinChannel', { channelId: 'test' });
+let id = Math.floor(Math.random() * 9999999999);
+socket.emit('joinChannel', { channelId: id });
 
 let victimInfo = {};
 
@@ -13,15 +13,20 @@ if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(location) {
         lat = location.coords.latitude;
         lng = location.coords.longitude;
+        // build this info from answers to questions
         victimInfo = {
+            id:  id,
             name: "Test User",
-            phone: "1112223333",
+            phone: "" + id,
             emergencyLevel: 4,
             info: "my arm is broken please help me",
-            numPeople: 1,
+            numPeople: Math.floor(Math.random() * 5) + 1,
             location: {
-                latitude: lat,
-                longitude: lng
+                "type": "Point",
+                "coordinates": [
+                    lat,
+                    lng
+                ]
             }
         }
     });

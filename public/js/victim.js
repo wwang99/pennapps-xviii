@@ -5,14 +5,20 @@ const socket = io();
 // }
 socket.on('helpOnTheWay', () => {
     console.log('recived help');
-    $("body").replaceWith("you are being rescued!");
+    $("#rescue-form").hide();
+    $("#rescue-waiting").hide();
+    $("#rescue-recieved").show();
+    $("body").css("background-color", "whitesmoke");
 });
 
 if (window.location.search) {
     let id = window.location.search.substr(1).slice(3);
     socket.emit('joinChannel', { channelId: id });
     console.log('joined channel', id);
-    $("body").replaceWith("SOS request received")
+    $("#rescue-form").hide();
+    $("#rescue-recieved").hide();
+    $("#rescue-waiting").show();
+    $("body").css("background-color", "whitesmoke");
 }
 
 let victimInfo = {};

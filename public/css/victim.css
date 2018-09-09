@@ -1,0 +1,33 @@
+
+#rescue-waiting {
+    display: none;
+}
+
+#rescue-recieved {
+    display: none;
+}
+
+#header {
+    display: block;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    margin-left: 1em;
+}
+
+.graphic {
+    margin-top: 10em;
+    width: 12em;
+    margin: auto;
+}
+
+
+
+.graphic-wrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+}
